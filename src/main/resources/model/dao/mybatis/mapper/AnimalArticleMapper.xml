@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="model.dao.mybatis.mapper.AnimalArticleMapper">
+	<cache />
+	
+	<insert id="insertAnimal" parameterType="AnimalArticle" >
+		<selectKey keyProperty="articleId" resultType="int" order="BEFORE">
+			SELECT seq_donation_article_id.nextval AS articleId FROM DUAL
+		</selectKey>
+		
+		INSERT INTO donation_article (article_id, title, category, deadline, bank_name, acc_holder, 
+		acc_num, id_check, due_date, use_plan, other_text, create_date, update_date, receipt_check, total_amount, user_id)
+		VALUES (#{articleId}, #{title}, #{category}, #{deadline}, #{bankName}, #{accHolder}, #{accNum}, #{idCheck}, #{dueDate}, #{usePlan},
+		#{otherText}, SYSDATE, #{updateDate}, #{receiptCheck}, #{totalAmount}, #{userId})
+		
+		INSERT INTO ANIMAL_ARTICLE 
+		VALUES (#{articleId}, #{name}, #{area}, #{type}, #{age}, #{weight}, #{gender}, #{neutering}, #{currentStatus}, #{healthStatus}, #{personality})
+	</insert>
+	
+	<select id="selectAnimalArticleByPk" parameterType="int" resultType="AnimalArticle">
+		SELECT a.article_id AS articleId, title, category,  TO_CHAR(deadline, 'YYYY-MM-DD') AS deadline,
+		bank_name AS bankName, acc_holder AS accHolder, acc_num AS accNum,
+		TO_CHAR(due_date, 'YYYY-MM-DD') AS dueDate, use_plan AS usePlan, 
+		other_text AS otherText, create_date AS createDate, update_date AS updateDate,
+		receipt_check AS receiptCheck, user_id AS userId, total_amount AS totalAmount,
+		name, area, type, age, weight, gender, neutering, current_status AS currentStatus,
+		health_status AS healthStatus, personality AS personality
+		FROM animal_article a JOIN donation_article d ON a.article_id = d.article_id 
+		WHERE a.article_id=#{articleId}
+	</select>
+	
+	<update id="updateAnimalArticle" parameterType="AnimalArticle">
+		UPDATE ANIMAL_ARTICLE
+		SET name=#{name}, area=#{area}, type=#{type}, age=#{age}, weight=#{weight}, gender=#{gender}, neutering=#{neutering}, current_status=#{currentStatus}, health_status=#{healthStatus}, personality=#{personality} 
+		WHERE article_id=#{articleId} 
+	</update>
+</mapper>

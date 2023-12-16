@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="model.dao.mybatis.mapper.DonationArticleMapper">
+	<cache />
+	
+	<insert id="insertImage" parameterType="DonationImage">
+		INSERT INTO DONATION_IMAGE 
+		VALUES (#{articleId}, #{fileOrder}, #{fileName})
+	</insert>
+	
+	<select id="selectImages" parameterType="int" resultType="DonationImage">
+		SELECT img_order AS fileOrder , img_link AS fileName
+		FROM donation_image
+		WHERE article_id = #{articleId}
+		ORDER BY img_order
+	</select>
+	
+	<update id="updateArticle" parameterType="DonationImage">
+		UPDATE DONATION_ARTICLE 
+		SET title=#{title}, due_date=#{dueDate}, use_plan=#{usePlan}, other_text=#{otherText}, update_date = SYSDATE, receipt_check=#{receiptCheck} 
+		WHERE article_id=#{articleId}
+	</update>
+	
+	<delete id="deleteArticle" parameterType="int">
+		DELETE FROM DONATION_ARTICLE 
+		WHERE article_id=#{articleId}  
+	</delete>
+</mapper>

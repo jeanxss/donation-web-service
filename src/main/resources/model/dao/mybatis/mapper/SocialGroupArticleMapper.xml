@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="model.dao.mybatis.mapper.SocialGroupArticleMapper">
+	<cache />
+	
+	<select id="selectSocialGroupArticleByPk" parameterType="int" resultType="SocialGroupArticle">
+		SELECT d.article_id AS articleId, title, category, TO_CHAR(deadline, 'YYYY-MM-DD')  AS deadline,
+		bank_name AS bankName, acc_holder AS accHolder, acc_num AS accNum,
+		TO_CHAR(due_date, 'YYYY-MM-DD') AS dueDate, use_plan AS usePlan, 
+		other_text AS otherText, create_date AS createDate, update_date AS updateDate,
+		receipt_check AS receiptCheck, user_id AS userId, total_amount AS totalAmount,
+		age, gender, type, area, situation
+		FROM donation_article d JOIN socialgroup_article s ON d.article_id = s.article_id
+		WHERE d.article_id=#{articleId}
+	</select>
+	
+	<update id="updateSocialGroupArticle" parameterType="SocialGroupArticle">
+		UPDATE SOCIALGROUP_ARTICLE
+		SET age=#{age}, gender=#{gender}, type=#{type}, area=#{area}, situation=#{situation}  
+		WHERE article_id=#{articleId} 
+	</update>
+</mapper>

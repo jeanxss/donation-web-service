@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="model.dao.mybatis.mapper.DisasterArticleMapper">
+	<cache />
+	
+	<select id="selectDisasterArticleByPk" parameterType="int" resultType="DisasterArticle">
+		SELECT d.article_id AS articleId, title, category, TO_CHAR(deadline, 'YYYY-MM-DD') AS deadline,
+		bank_name AS bankName, acc_holder AS accHolder, acc_num AS accNum, TO_CHAR(due_date, 'YYYY-MM-DD') AS dueDate,
+		use_plan AS usePlan, other_text AS otherText, create_date AS createDate,
+		update_date AS updateDate, receipt_check AS receiptCheck, user_id AS userId, total_amount AS totalAmount,
+		type, name, area, damage_amount AS damageAmount, situation
+		FROM disaster_article dis JOIN donation_article d ON dis.article_id = d.article_id 
+		WHERE dis.article_id=#{articleId}		
+	</select>
+	
+	<update id="updateDisasterArticle" parameterType="DisasterArticle">
+		UPDATE DISASTER_ARTICLE 
+		SET type = #{type}, name = #{name}, area = #{area}, damage_amount = #{damageAmount}, situation = #{situation}
+		WHERE article_id=#{articleId} 
+	</update>
+</mapper>
