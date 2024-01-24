@@ -12,6 +12,17 @@
   -> 신분증의 이름, 생년월일 정보가 회원의 이름, 생년월일 정보와 일치하면 신분증 인증이 완료됩니다.
 
 <br><br>
+<프로젝트 UI 일부>
+
+![home](https://github.com/jeanxss/donation-system/assets/153884787/a80dd26b-61d2-47fb-ab86-604e19dccb1d)
+![localhost_8080_ui_AnimalForm jsp](https://github.com/jeanxss/donation-system/assets/153884787/10364260-3a76-46bb-805e-4bc49e4a3f64)
+![localhost_8080_donationSystem_donationList_animal_articleId=14](https://github.com/jeanxss/donation-system/assets/153884787/91a8934f-2a0a-47ad-aa09-8e81ae8a0fc8)
+![localhost_8080_ui_SociallyPost jsp](https://github.com/jeanxss/donation-system/assets/153884787/66ef4455-5387-4897-92fd-6949e8f9aa1f)
+![localhost_8080_ui_DisasterPost jsp](https://github.com/jeanxss/donation-system/assets/153884787/a9e03266-ded5-4e16-b939-e8817b42416e)
+![localhost_8080_ui_Feed jsp](https://github.com/jeanxss/donation-system/assets/153884787/02b4cd3f-6e29-4f5a-a05d-72bcb27dd83a)
+![localhost_8080_ui_Faq jsp](https://github.com/jeanxss/donation-system/assets/153884787/3cb4a6de-04ff-44a4-9674-04d7a447825a)
+
+<br><br>
 <프로젝트 PPT>
 
 ![1](https://github.com/jeanxss/donation-system/assets/153884787/5c8beb50-969c-4c6d-82ca-cc9bfc72d18f)
